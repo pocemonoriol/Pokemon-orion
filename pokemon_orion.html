@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sitio oficial de fans de Pokémon con animaciones e información">
+  <title>Mundo Pokémon | Sitio oficial de fans</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #ff3e3e;
+      --secondary-color: #ffde59;
+      --dark-color: #2a2a2a;
+      --light-color: #f5f5f5;
+      --accent-color: #3b4cca;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      color: var(--dark-color);
+      background-color: var(--light-color);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 100;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.5rem;
+      color: var(--secondary-color);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary-color);
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      margin-bottom: 3rem;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                  url('https://assets.pokemon.com/static2/_ui/img/og-default-image.jpeg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-family: 'Press Start 2P', cursive;
+      color: var(--secondary-color);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .btn:hover {
+      background-color: transparent;
+      border-color: white;
+      transform: translateY(-3px);
+    }
+
+    .animation-section {
+      background-color: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .animation-container {
+      position: relative;
+      min-height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .pokeball {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(to bottom, var(--primary-color) 0 48%, var(--dark-color) 48% 52%, rgb(206, 205, 205) 50% 100%);
+      border-radius: 50%;
+      position: relative;
+      animation: bounce 2s infinite alternate;
+      cursor: pointer;
+      transition: transform 0.3s;
+      margin-bottom: 1.5rem;
+    }
+
+    .pokeball:hover {
+      transform: scale(1.1);
+    }
+
+    .pokeball::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 0px;
+      background-color: var(--dark-color);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .pokeball::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background-color: white;
+      border: 5px solid var(--dark-color);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .pokemon {
+      max-width: 120px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+
+    .pokemon.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pokemon.hidden {
+      display: none;
+    }
+
+    .game-description {
+      background-color: var(--light-color);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      text-align: left;
+      border-left: 5px solid var(--accent-color);
+    }
+
+    .game-description h3 {
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1rem;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-20px); }
+    }
+
+    footer {
+      background-color: var(--dark-color);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .pokeball {
+        width: 60px;
+        height: 60px;
+      }
+
+      .pokemon {
+        max-width: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="/dades/shoxa/pokemon_orion.html" class="logo">pokemon orion</a>
+      <div class="nav-links">
+        <a href="/dades/shoxa/pokemon_orion.html">Inicio</a>
+        <a href="/dades/shoxa/juego.html">Juego</a>
+        <a href="/dades/shoxa/Contacto.html">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>¡Bienvenido al Pokémon Orion!</h1>
+      <p>Descubre el increíble mundo de los Pokémon, sus habilidades y evoluciones.</p>
+      <a href="#" class="btn">Comenzar aventura</a>
+    </section>
+
+    <section class="animation-section">
+      <h2>Animación de Pokeball</h2>
+      <p>Haz clic en la pokeball para ver una animación</p>
+      <div class="animation-container">
+        <div class="pokeball" id="main-pokeball"></div>
+        <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png" 
+             alt="Pikachu" class="pokemon hidden" id="pikachu">
+      </div>
+      
+      <div class="game-description">
+        <h3>SOBRE POKÉMON ORION</h3>
+        <p>Pokémon Orion será un juego basado en Grecia pero modernizada, donde los líderes de gimnasio, altos mandos y campeón serán Dioses y Titanes con sus respectivos tipos. Como misión tenemos hacer una DEMO del juego donde mínimo hayan 3 líderes de gimnasio disponibles contra los que poder combatir.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Pokémon Orion. Todos los derechos reservados.</p>
+      <p>Este es un sitio de fans no oficial. Pokémon y todos los nombres relacionados son marcas registradas de Nintendo.</p>
+    </div>
+  </footer>
+
+  <script>
+    const pokeball = document.getElementById('main-pokeball');
+    const pikachu = document.getElementById('pikachu');
+
+    pokeball.addEventListener('click', function () {
+      this.style.animation = 'none';
+      this.style.transform = 'rotate(720deg) scale(1.2)';
+      this.style.transition = 'transform 1s';
+
+      pikachu.classList.remove('hidden');
+
+      setTimeout(() => {
+        pikachu.classList.add('visible');
+
+        setTimeout(() => {
+          this.style.transform = '';
+          this.style.transition = '';
+          this.style.animation = 'bounce 2s infinite alternate';
+
+          setTimeout(() => {
+            pikachu.classList.remove('visible');
+            setTimeout(() => pikachu.classList.add('hidden'), 600);
+          }, 2000);
+        }, 1000);
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

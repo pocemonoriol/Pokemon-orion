@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contacto e información del sitio Pokémon">
+  <title>Contacto | Mundo Pokémon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #ff3e3e;
+      --secondary-color: #ffde59;
+      --dark-color: #2a2a2a;
+      --light-color: #f5f5f5;
+      --accent-color: #3b4cca;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      color: var(--dark-color);
+      background-color: var(--light-color);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      color: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 100;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1.5rem;
+      color: var(--secondary-color);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary-color);
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      margin-bottom: 3rem;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                  url('https://assets.pokemon.com/static2/_ui/img/og-default-image.jpeg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-family: 'Press Start 2P', cursive;
+      color: var(--secondary-color);
+    }
+
+    .contact-section {
+      background-color: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 3rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .contact-card {
+      background-color: var(--light-color);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: transform 0.3s;
+      border-top: 5px solid var(--primary-color);
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .contact-card h3 {
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      font-family: 'Press Start 2P', cursive;
+      font-size: 1rem;
+    }
+
+    .contact-card p {
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-card a:hover {
+      color: var(--accent-color);
+      text-decoration: underline;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-family: inherit;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent-color);
+      outline: none;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--primary-color);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: transparent;
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      background-color: var(--dark-color);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="/dades/shoxa/pokemon_orion.html" class="logo">pokemon orion</a>
+      <div class="nav-links">
+        <a href="/dades/shoxa/pokemon_orion.html">Inicio</a>
+        <a href="/dades/shoxa/juego.html">Juego</a>
+        <a href="/dades/shoxa/Contacto.html">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>¡Contáctanos!</h1>
+      <p>¿Tienes preguntas o sugerencias? ¡Nos encantaría escucharte!</p>
+    </section>
+
+    <section class="contact-section">
+      <h2>Información de Contacto</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>DIRECCIÓN</h3>
+          <p>Calle d'Aiguablava </p>
+          <p>Ciudad Barcelona, Región Barcelona</p>
+        </div>
+        
+        <div class="contact-card">
+          <h3>EMAIL</h3>
+          <p><a href="mailto:shokhrukh.shavkatov.7e7@itb.cat">shokhrukh.shavkatov.7e7@itb.cat</a></p>
+          <p><a href="mailto:erik.rodriguez.7e7@itb.cat ">erik.rodriguez.7e7@itb.cat </a></p>
+          <p><a href="yago.gutierrez.7e7@itb.cat ">yago.gutierrez.7e7@itb.cat </a></p>
+        </div>
+        
+        <div class="contact-card">
+          <h3>TELÉFONO</h3>
+          <p><a href="tel:+1234567890">+34 777-777-777</a></p>
+          <p>Horario: 9:00 - 18:00</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section">
+      <h2>Formulario de Contacto</h2>
+      <form>
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input type="text" id="name" placeholder="Ash Ketchum" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="ash@pokemon.com" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="subject">Asunto</label>
+          <input type="text" id="subject" placeholder="¿Cómo puedo atrapar a Mew?">
+        </div>
+        
+        <div class="form-group">
+          <label for="message">Mensaje</label>
+          <textarea id="message" rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+        </div>
+        
+        <button type="submit" class="btn">Enviar Mensaje</button>
+      </form>
