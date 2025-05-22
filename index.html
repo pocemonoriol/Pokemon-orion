@@ -90,7 +90,7 @@
       border-radius: 15px;
       margin-bottom: 3rem;
       background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                  url('https://assets.pokemon.com/static2/_ui/img/og-default-image.jpeg');
+                  url('Orion2.png');
       background-size: cover;
       background-position: center;
       color: white;
@@ -145,61 +145,6 @@
       flex-direction: column;
     }
 
-    .pokeball {
-      width: 80px;
-      height: 80px;
-      background: linear-gradient(to bottom, var(--primary-color) 0 48%, var(--dark-color) 48% 52%, rgb(206, 205, 205) 50% 100%);
-      border-radius: 50%;
-      position: relative;
-      animation: bounce 2s infinite alternate;
-      cursor: pointer;
-      transition: transform 0.3s;
-      margin-bottom: 1.5rem;
-    }
-
-    .pokeball:hover {
-      transform: scale(1.1);
-    }
-
-    .pokeball::before {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 0px;
-      background-color: var(--dark-color);
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .pokeball::after {
-      content: '';
-      position: absolute;
-      width: 25px;
-      height: 25px;
-      background-color: white;
-      border: 5px solid var(--dark-color);
-      border-radius: 50%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .pokemon {
-      max-width: 120px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s, transform 0.6s;
-    }
-
-    .pokemon.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .pokemon.hidden {
-      display: none;
-    }
-
     .game-description {
       background-color: var(--light-color);
       border-radius: 10px;
@@ -247,49 +192,37 @@
       .hero h1 {
         font-size: 2rem;
       }
-
-      .pokeball {
-        width: 60px;
-        height: 60px;
-      }
-
-      .pokemon {
-        max-width: 100px;
-      }
     }
   </style>
 </head>
 <body>
   <header>
     <nav class="navbar">
-      <a href="index.html" class="logo">pokemon orion</a>
+      <a href="index.html" class="logo">Pokemon orion</a>
       <div class="nav-links">
         <a href="index.html">Inicio</a>
         <a href="juego.html">Juego</a>
-        <a href="index.html">Contacto</a>
+        <a href="Contacto.html">Contacto</a>
       </div>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <h1>¡Bienvenido al Pokémon Orion!</h1>
-      <p>Descubre el increíble mundo de los Pokémon, sus habilidades y evoluciones.</p>
-      <a href="#" class="btn">Comenzar aventura</a>
+      <h1>Pokémon Orion</h1>
+      <p>¡Un juego donde vivirás grandes aventuras junto a tus pokemon!</p>
     </section>
 
     <section class="animation-section">
-      <h2>Animación de Pokeball</h2>
-      <p>Haz clic en la pokeball para ver una animación</p>
-      <div class="animation-container">
-        <div class="pokeball" id="main-pokeball"></div>
-        <img src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png" 
-             alt="Pikachu" class="pokemon hidden" id="pikachu">
-      </div>
+      <h2>Logo del Juego</h2>
+        <p></p>
+        <div class="Logo" id="LogoOrion"></div>
+        <img width="600px" src="Orion.png"> 
+      
       
       <div class="game-description">
         <h3>SOBRE POKÉMON ORION</h3>
-        <p>Pokémon Orion será un juego basado en Grecia pero modernizada, donde los líderes de gimnasio, altos mandos y campeón serán Dioses y Titanes con sus respectivos tipos. Como misión tenemos hacer una DEMO del juego donde mínimo hayan 3 líderes de gimnasio disponibles contra los que poder combatir.</p>
+        <p>Pokémon Orion es un juego donde vives la aventura por Kanto pero en el pasado.</p>
       </div>
     </section>
   </main>
@@ -300,33 +233,5 @@
       <p>Este es un sitio de fans no oficial. Pokémon y todos los nombres relacionados son marcas registradas de Nintendo.</p>
     </div>
   </footer>
-
-  <script>
-    const pokeball = document.getElementById('main-pokeball');
-    const pikachu = document.getElementById('pikachu');
-
-    pokeball.addEventListener('click', function () {
-      this.style.animation = 'none';
-      this.style.transform = 'rotate(720deg) scale(1.2)';
-      this.style.transition = 'transform 1s';
-
-      pikachu.classList.remove('hidden');
-
-      setTimeout(() => {
-        pikachu.classList.add('visible');
-
-        setTimeout(() => {
-          this.style.transform = '';
-          this.style.transition = '';
-          this.style.animation = 'bounce 2s infinite alternate';
-
-          setTimeout(() => {
-            pikachu.classList.remove('visible');
-            setTimeout(() => pikachu.classList.add('hidden'), 600);
-          }, 2000);
-        }, 1000);
-      }, 1000);
-    });
-  </script>
 </body>
 </html>
