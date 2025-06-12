@@ -61,6 +61,7 @@
     .nav-links {
       display: flex;
       gap: 2rem;
+      align-items: center;
     }
 
     .nav-links a {
@@ -72,6 +73,25 @@
 
     .nav-links a:hover {
       color: var(--secondary-color);
+    }
+
+    .language-btn {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 5px;
+      padding: 0.3rem 0.8rem;
+      font-family: 'Roboto', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-left: 1rem;
+    }
+
+    .language-btn:hover {
+      background-color: var(--secondary-color);
+      color: var(--dark-color);
+      border-color: var(--secondary-color);
     }
 
     main {
@@ -187,6 +207,8 @@
 
       .nav-links {
         gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
       }
 
       .hero h1 {
@@ -200,38 +222,122 @@
     <nav class="navbar">
       <a href="index.html" class="logo">Pokémon orión</a>
       <div class="nav-links">
-        <a href="index.html">Inicio</a>
-        <a href="juego.html">Juego</a>
-        <a href="Contacto.html">Contacto</a>
+        <a href="index.html" data-translate="home">Inicio</a>
+        <a href="juego.html" data-translate="game">Juego</a>
+        <a href="Contacto.html" data-translate="contact">Contacto</a>
+        <div class="language-switcher">
+          <button class="language-btn" data-lang="ES">ES</button>
+          <button class="language-btn" data-lang="RU">RU</button>
+          <button class="language-btn" data-lang="EN">EN</button>
+        </div>
       </div>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <h1>Pokémon Orión</h1>
-      <p>¡Un juego donde vivirás grandes aventuras junto a tus pokémon!</p>
+      <h1 data-translate="heroTitle">Pokémon Orión</h1>
+      <p data-translate="heroText">¡Un juego donde vivirás grandes aventuras junto a tus pokémon!</p>
     </section>
 
     <section class="animation-section">
-      <h2>Logo del Juego</h2>
-        <p></p>
-        <div class="Logo" id="LogoOrion"></div>
-        <img width="600px" src="Orion.png"> 
-      
+      <h2 data-translate="gameLogo">Logo del Juego</h2>
+      <p></p>
+      <div class="Logo" id="LogoOrion"></div>
+      <img width="600px" src="Orion.png"> 
       
       <div class="game-description">
-        <h3>SOBRE POKÉMON ORIÓN</h3>
-        <p>Pokémon Orión es un juego donde vives la aventura por Kanto pero en el pasado.</p>
+        <h3 data-translate="aboutTitle">SOBRE POKÉMON ORIÓN</h3>
+        <p data-translate="aboutText">Pokémon Orión es un juego donde vives la aventura por Kanto pero en el pasado.</p>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="footer-content">
-      <p>&copy; 2025 Pokémon Orión. Todos los derechos reservados.</p>
-      <p>Este es un sitio de fans no oficial. Pokémon y todos los nombres relacionados son marcas registradas de Nintendo.</p>
+      <p>&copy; 2025 Pokémon Orión. <span data-translate="rights">Todos los derechos reservados.</span></p>
+      <p data-translate="disclaimer">Este es un sitio de fans no oficial. Pokémon y todos los nombres relacionados son marcas registradas de Nintendo.</p>
     </div>
   </footer>
+
+  <script>
+    const translations = {
+      'ES': {
+        'home': 'Inicio',
+        'game': 'Juego',
+        'contact': 'Contacto',
+        'heroTitle': 'Pokémon Orión',
+        'heroText': '¡Un juego donde vivirás grandes aventuras junto a tus pokémon!',
+        'gameLogo': 'Logo del Juego',
+        'aboutTitle': 'SOBRE POKÉMON ORIÓN',
+        'aboutText': 'Pokémon Orión es un juego donde vives la aventura por Kanto pero en el pasado.',
+        'rights': 'Todos los derechos reservados.',
+        'disclaimer': 'Este es un sitio de fans no oficial. Pokémon y todos los nombres relacionados son marcas registradas de Nintendo.'
+      },
+      'RU': {
+        'home': 'Главная',
+        'game': 'Игра',
+        'contact': 'Контакты',
+        'heroTitle': 'Покемон Орион',
+        'heroText': 'Игра, в которой вас ждут удивительные приключения с покемонами!',
+        'gameLogo': 'Логотип игры',
+        'aboutTitle': 'О ПOKÉMON ORIÓN',
+        'aboutText': 'Pokémon Orión - это игра, где вы отправитесь в прошлое региона Канто.',
+        'rights': 'Все права защищены.',
+        'disclaimer': 'Это неофициальный фан-сайт. Покемон и все связанные названия являются зарегистрированными товарными знаками Nintendo.'
+      },
+      'EN': {
+        'home': 'Home',
+        'game': 'Game',
+        'contact': 'Contact',
+        'heroTitle': 'Pokémon Orion',
+        'heroText': 'A game where you will live great adventures with your Pokémon!',
+        'gameLogo': 'Game Logo',
+        'aboutTitle': 'ABOUT POKÉMON ORION',
+        'aboutText': 'Pokémon Orion is a game where you experience the Kanto adventure but in the past.',
+        'rights': 'All rights reserved.',
+        'disclaimer': 'This is an unofficial fan site. Pokémon and all related names are registered trademarks of Nintendo.'
+      }
+    };
+
+    function updateLanguage(lang) {
+      // Обновляем атрибут lang у html элемента
+      document.documentElement.lang = lang.toLowerCase();
+      
+      // Обновляем все переводимые элементы
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+      });
+      
+      // Обновляем активную кнопку языка
+      document.querySelectorAll('.language-btn').forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      
+      // Сохраняем выбор языка
+      localStorage.setItem('language', lang);
+    }
+
+    // Инициализация языка при загрузке
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('language') || 'ES';
+      updateLanguage(savedLang);
+      
+      // Обработчики кликов для кнопок языка
+      document.querySelectorAll('.language-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          updateLanguage(lang);
+        });
+      });
+    });
+  </script>
 </body>
 </html>

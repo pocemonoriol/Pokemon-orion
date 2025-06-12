@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Descarga Pokémon Orión y aprende a instalarlo en tu móvil." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Descarga Pokémon Orión y aprende a instalarlo en tu móvil.">
   <title>Descargar Pokémon Orión | Guía de instalación</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary-color: #ff3e3e;
@@ -56,6 +56,7 @@
     .nav-links {
       display: flex;
       gap: 2rem;
+      align-items: center;
     }
 
     .nav-links a {
@@ -67,6 +68,38 @@
 
     .nav-links a:hover {
       color: var(--secondary-color);
+    }
+
+    .language-switcher {
+      display: flex;
+      gap: 0.5rem;
+      margin-left: 1rem;
+    }
+
+    .language-btn {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 5px;
+      padding: 0.3rem 0.8rem;
+      font-family: 'Roboto', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      min-width: 40px;
+    }
+
+    .language-btn:hover {
+      background-color: var(--secondary-color);
+      color: var(--dark-color);
+      border-color: var(--secondary-color);
+    }
+
+    .language-btn.active {
+      background-color: var(--secondary-color);
+      color: var(--dark-color);
+      border-color: var(--secondary-color);
+      font-weight: bold;
     }
 
     main {
@@ -119,6 +152,8 @@
       text-decoration: none;
       transition: all 0.3s;
       margin-top: 1.5rem;
+      border: none;
+      cursor: pointer;
     }
 
     .download-btn:hover {
@@ -126,6 +161,7 @@
       border: 2px solid var(--primary-color);
       color: var(--primary-color);
     }
+
     footer {
       background-color: var(--dark-color);
       color: white;
@@ -145,6 +181,17 @@
         gap: 1rem;
       }
 
+      .nav-links {
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .language-switcher {
+        margin-left: 0;
+        margin-top: 1rem;
+      }
+
       .hero h1 {
         font-size: 1.8rem;
       }
@@ -160,31 +207,106 @@
     <nav class="navbar">
       <a href="index.html" class="logo">Pokémon orión</a>
       <div class="nav-links">
-        <a href="index.html">Inicio</a>
-        <a href="juego.html">Juego</a>
-        <a href="Contacto.html">Contacto</a>
+        <a href="index.html" data-translate="home">Inicio</a>
+        <a href="juego.html" data-translate="game">Juego</a>
+        <a href="Contacto.html" data-translate="contact">Contacto</a>
+        <div class="language-switcher">
+          <button class="language-btn" data-lang="ES">ES</button>
+          <button class="language-btn" data-lang="RU">RU</button>
+          <button class="language-btn" data-lang="EN">EN</button>
+        </div>
       </div>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <h1>¡Descarga Pokémon Orión!</h1>
-      <p>¡Descarga el juego para poder adentrarte en el mundo Pokémon!</p>
+      <h1 data-translate="downloadTitle">¡Descarga Pokémon Orión!</h1>
+      <p data-translate="downloadText">¡Descarga el juego para poder adentrarte en el mundo Pokémon!</p>
     </section>
 
     <section class="download-section">
-      <h2>POKÉMON ORIÓN</h2>
-      <a href="https://drive.google.com/file/d/1T_-ns6U6ueQF49e_evlj59yuDzyfgPX8/view
-" class="download-btn" download>Descargar Juego</a>
+      <h2 data-translate="gameTitle">POKÉMON ORIÓN</h2>
+      <a href="https://drive.google.com/file/d/1T_-ns6U6ueQF49e_evlj59yuDzyfgPX8/view" class="download-btn" download data-translate="downloadBtn">Descargar Juego</a>
     </section>
   </main>
 
   <footer>
     <div class="footer-content">
-      <p>&copy; 2025 Pokémon Orión. Todos los derechos reservados.</p>
-      <p>Este es un sitio de fans no oficial. Pokémon y todos los nombres relacionados son marcas registradas de Nintendo.</p>
+      <p>&copy; 2025 Pokémon Orión. <span data-translate="rights">Todos los derechos reservados.</span></p>
+      <p data-translate="disclaimer">Este es un sitio de fans no oficial. Pokémon y todos los nombres relacionados son marcas registradas de Nintendo.</p>
     </div>
   </footer>
+
+  <script>
+    const translations = {
+      'ES': {
+        'home': 'Inicio',
+        'game': 'Juego',
+        'contact': 'Contacto',
+        'downloadTitle': '¡Descarga Pokémon Orión!',
+        'downloadText': '¡Descarga el juego para poder adentrarte en el mundo Pokémon!',
+        'gameTitle': 'POKÉMON ORIÓN',
+        'downloadBtn': 'Descargar Juego',
+        'rights': 'Todos los derechos reservados.',
+        'disclaimer': 'Este es un sitio de fans no oficial. Pokémon y todos los nombres relacionados son marcas registradas de Nintendo.'
+      },
+      'RU': {
+        'home': 'Главная',
+        'game': 'Игра',
+        'contact': 'Контакты',
+        'downloadTitle': 'Скачать Pokémon Orión!',
+        'downloadText': 'Скачайте игру, чтобы погрузиться в мир покемонов!',
+        'gameTitle': 'POKÉMON ORIÓN',
+        'downloadBtn': 'Скачать игру',
+        'rights': 'Все права защищены.',
+        'disclaimer': 'Это неофициальный фан-сайт. Покемон и все связанные названия являются зарегистрированными товарными знаками Nintendo.'
+      },
+      'EN': {
+        'home': 'Home',
+        'game': 'Game',
+        'contact': 'Contact',
+        'downloadTitle': 'Download Pokémon Orion!',
+        'downloadText': 'Download the game to enter the Pokémon world!',
+        'gameTitle': 'POKÉMON ORION',
+        'downloadBtn': 'Download Game',
+        'rights': 'All rights reserved.',
+        'disclaimer': 'This is an unofficial fan site. Pokémon and all related names are registered trademarks of Nintendo.'
+      }
+    };
+
+    function updateLanguage(lang) {
+      document.documentElement.lang = lang.toLowerCase();
+      
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+      });
+      
+      document.querySelectorAll('.language-btn').forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      
+      localStorage.setItem('language', lang);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('language') || 'ES';
+      updateLanguage(savedLang);
+      
+      document.querySelectorAll('.language-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          updateLanguage(lang);
+        });
+      });
+    });
+  </script>
 </body>
 </html>

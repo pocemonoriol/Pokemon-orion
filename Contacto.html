@@ -61,6 +61,7 @@
     .nav-links {
       display: flex;
       gap: 2rem;
+      align-items: center;
     }
 
     .nav-links a {
@@ -72,6 +73,38 @@
 
     .nav-links a:hover {
       color: var(--secondary-color);
+    }
+
+    .language-switcher {
+      display: flex;
+      gap: 0.5rem;
+      margin-left: 1rem;
+    }
+
+    .language-btn {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      border-radius: 5px;
+      padding: 0.3rem 0.8rem;
+      font-family: 'Roboto', sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      min-width: 40px;
+    }
+
+    .language-btn:hover {
+      background-color: var(--secondary-color);
+      color: var(--dark-color);
+      border-color: var(--secondary-color);
+    }
+
+    .language-btn.active {
+      background-color: var(--secondary-color);
+      color: var(--dark-color);
+      border-color: var(--secondary-color);
+      font-weight: bold;
     }
 
     main {
@@ -101,6 +134,12 @@
       margin-bottom: 1rem;
       font-family: 'Press Start 2P', cursive;
       color: var(--secondary-color);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
     }
 
     .contact-section {
@@ -152,52 +191,6 @@
       text-decoration: underline;
     }
 
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.8rem;
-      border: 2px solid #ddd;
-      border-radius: 5px;
-      font-family: inherit;
-      transition: border-color 0.3s;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: var(--accent-color);
-      outline: none;
-    }
-
-    .btn {
-      display: inline-block;
-      background-color: var(--primary-color);
-      color: white;
-      padding: 0.8rem 1.5rem;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s;
-      border: 2px solid transparent;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background-color: transparent;
-      border-color: var(--primary-color);
-      color: var(--primary-color);
-      transform: translateY(-3px);
-    }
-
     footer {
       background-color: var(--dark-color);
       color: white;
@@ -219,6 +212,13 @@
 
       .nav-links {
         gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .language-switcher {
+        margin-left: 0;
+        margin-top: 1rem;
       }
 
       .hero h1 {
@@ -232,39 +232,137 @@
     <nav class="navbar">
       <a href="index.html" class="logo">Pokémon orión</a>
       <div class="nav-links">
-        <a href="index.html">Inicio</a>
-        <a href="juego.html">Juego</a>
-        <a href="Contacto.html">Contacto</a>
+        <a href="index.html" data-translate="home">Inicio</a>
+        <a href="juego.html" data-translate="game">Juego</a>
+        <a href="Contacto.html" data-translate="contact">Contacto</a>
+        <div class="language-switcher">
+          <button class="language-btn" data-lang="ES">ES</button>
+          <button class="language-btn" data-lang="RU">RU</button>
+          <button class="language-btn" data-lang="EN">EN</button>
+        </div>
       </div>
     </nav>
   </header>
 
   <main>
     <section class="hero">
-      <h1>¡Contáctanos!</h1>
-      <p>¿Tienes preguntas o sugerencias? ¡Nos encantaría escucharte!</p>
+      <h1 data-translate="contactTitle">¡Contáctanos!</h1>
+      <p data-translate="contactSubtitle">¿Tienes preguntas o sugerencias? ¡Nos encantaría escucharte!</p>
     </section>
 
     <section class="contact-section">
-      <h2>Información de Contacto</h2>
+      <h2 data-translate="contactInfo">Información de Contacto</h2>
       <div class="contact-grid">
         <div class="contact-card">
-          <h3>DIRECCIÓN</h3>
-          <p>Calle d'Aiguablava </p>
-          <p>Ciudad Barcelona, Región Barcelona</p>
+          <h3 data-translate="address">DIRECCIÓN</h3>
+          <p>Calle d'Aiguablava</p>
+          <p data-translate="location">Ciudad Barcelona, Región Barcelona</p>
         </div>
         
         <div class="contact-card">
-          <h3>EMAIL</h3>
+          <h3 data-translate="email">EMAIL</h3>
           <p><a href="mailto:shokhrukh.shavkatov.7e7@itb.cat">shokhrukh.shavkatov.7e7@itb.cat</a></p>
-          <p><a href="mailto:erik.rodriguez.7e7@itb.cat ">erik.rodriguez.7e7@itb.cat </a></p>
-          <p><a href="yago.gutierrez.7e7@itb.cat ">yago.gutierrez.7e7@itb.cat </a></p>
+          <p><a href="mailto:erik.rodriguez.7e7@itb.cat">erik.rodriguez.7e7@itb.cat</a></p>
+          <p><a href="mailto:yago.gutierrez.7e7@itb.cat">yago.gutierrez.7e7@itb.cat</a></p>
         </div>
         
         <div class="contact-card">
-          <h3>TELÉFONO</h3>
+          <h3 data-translate="phone">TELÉFONO</h3>
           <p><a href="tel:+1234567890">+34 777-777-777</a></p>
-          <p>Horario: 9:00 - 18:00</p>
+          <p data-translate="schedule">Horario: 9:00 - 18:00</p>
         </div>
       </div>
     </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Pokémon Orión. <span data-translate="rights">Todos los derechos reservados.</span></p>
+      <p data-translate="disclaimer">Este es un sitio de fans no oficial. Pokémon y todos los nombres relacionados son marcas registradas de Nintendo.</p>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      'ES': {
+        'home': 'Inicio',
+        'game': 'Juego',
+        'contact': 'Contacto',
+        'contactTitle': '¡Contáctanos!',
+        'contactSubtitle': '¿Tienes preguntas o sugerencias? ¡Nos encantaría escucharte!',
+        'contactInfo': 'Información de Contacto',
+        'address': 'DIRECCIÓN',
+        'email': 'EMAIL',
+        'phone': 'TELÉFONO',
+        'location': 'Ciudad Barcelona, Región Barcelona',
+        'schedule': 'Horario: 9:00 - 18:00',
+        'rights': 'Todos los derechos reservados.',
+        'disclaimer': 'Este es un sitio de fans no oficial. Pokémon y todos los nombres relacionados son marcas registradas de Nintendo.'
+      },
+      'RU': {
+        'home': 'Главная',
+        'game': 'Игра',
+        'contact': 'Контакты',
+        'contactTitle': 'Свяжитесь с нами!',
+        'contactSubtitle': 'Есть вопросы или предложения? Мы будем рады услышать вас!',
+        'contactInfo': 'Контактная информация',
+        'address': 'АДРЕС',
+        'email': 'ЭЛЕКТРОННАЯ ПОЧТА',
+        'phone': 'ТЕЛЕФОН',
+        'location': 'Город Барселона, Регион Барселона',
+        'schedule': 'Часы работы: 9:00 - 18:00',
+        'rights': 'Все права защищены.',
+        'disclaimer': 'Это неофициальный фан-сайт. Покемон и все связанные названия являются зарегистрированными товарными знаками Nintendo.'
+      },
+      'EN': {
+        'home': 'Home',
+        'game': 'Game',
+        'contact': 'Contact',
+        'contactTitle': 'Contact Us!',
+        'contactSubtitle': 'Do you have questions or suggestions? We would love to hear from you!',
+        'contactInfo': 'Contact Information',
+        'address': 'ADDRESS',
+        'email': 'EMAIL',
+        'phone': 'PHONE',
+        'location': 'Barcelona City, Barcelona Region',
+        'schedule': 'Schedule: 9:00 - 18:00',
+        'rights': 'All rights reserved.',
+        'disclaimer': 'This is an unofficial fan site. Pokémon and all related names are registered trademarks of Nintendo.'
+      }
+    };
+
+    function updateLanguage(lang) {
+      document.documentElement.lang = lang.toLowerCase();
+      
+      document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
+      });
+      
+      document.querySelectorAll('.language-btn').forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+      
+      localStorage.setItem('language', lang);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('language') || 'ES';
+      updateLanguage(savedLang);
+      
+      document.querySelectorAll('.language-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const lang = btn.getAttribute('data-lang');
+          updateLanguage(lang);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
